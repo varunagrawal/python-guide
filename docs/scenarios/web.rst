@@ -473,6 +473,36 @@ you can replace it with a more terse and readable syntax that uses the pattern
 But keep in mind that the full `<span tal:replace="expression">Default Text</span>` 
 syntax also allows for default content in the unrendered template.
 
+Mako
+----
+`Mako <http://www.makotemplates.org/>` is a template library written in Python. It provides a familiar, non-XML syntax which compiles into Python modules for maximum performance. Mako's syntax and API borrows from the best ideas of many others, including Django and Jinja2 templates, Cheetah, Myghty, and Genshi. Conceptually, Mako is an embedded Python (i.e. Python Server Page) language, which refines the familiar ideas of componentized layout and inheritance to produce one of the most straightforward and flexible models available, while also maintaining close ties to Python calling and scoping semantics.
+
+Mako is used by `reddit.com <http://reddit.com/>` where it delivers over `one billion page views per month <http://mashable.com/2011/02/02/reddit-surpasses-1-billion-monthly-pageviews/>`. It is the default template language included with the `Pylons and Pyramid <https://www.pylonsproject.org/>` web frameworks. 
+
+In a nutshell:
+
+.. code-block:: html
+
+   <%inherit file="base.html"/>
+   <%
+	rows = [[v for v in range(0,10)] for row in range(0,10)]
+   %>
+   <table>
+	% for row in rows:
+		${makerow(row)}
+	% endfor
+   </table>
+   
+   <%def name="makerow(row)">
+	<tr>
+	% for name in row:
+		<td>${name}</td>\
+	% endfor
+	</tr>
+   </%def>
+
+To get started, visit the `documentation <http://www.makotemplates.org/docs/>` and the `download page <http://www.makotemplates.org/download.html>`.
+
 .. rubric:: References
 
 .. [1] `The mod_python project is now officially dead <http://blog.dscpl.com.au/2010/06/modpython-project-is-now-officially.html>`_
